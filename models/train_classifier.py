@@ -73,7 +73,6 @@ def build_model():
     return pipeline
 
 
-from sklearn.metrics import classification_report
 def display_results(y_test, y_pred):
     labels = np.unique(y_pred)
     #confusion_mat = confusion_matrix(y_test.argmax(axis=1), y_pred.argmax(axis=1), labels=labels)
@@ -103,26 +102,18 @@ def train_evaluate_model(model, X, Y):
     print("\nBest Parameters:", cv.best_params_)
     """
     y_pred = model_fit.predict(X_test)
-    #gridsearch_cv = gridsearch(model, X_train, y_train)
-    #print(gridsearch_cv)
     
     get_results = display_results(y_test, y_pred)
     print(get_results)
     return X_train, X_test, y_train, y_test, y_pred, model, get_results
-    
-
-
-    
-
+       
 def save_model(model, model_filepath):
     #with open('../models/{}.pickle'.format(model_filepath), 'wb') as f:
         #pickle.dump(model, f)
         
     with open(model_filepath, 'wb') as f:
         pickle.dump(model, f)
-    
-
-
+   
 def main():
     if len(sys.argv) == 3:
         database_filepath, model_filepath = sys.argv[1:]
