@@ -31,3 +31,5 @@
 3. models:
          i. classifier.zip: Pickel file of the trained classifier,
          ii. train_classifier.py: Script to train Random Forest classifier. 
+### Note:
+        - you might have to: pip install plotly_express==0.4.0
