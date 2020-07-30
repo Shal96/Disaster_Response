@@ -47,8 +47,8 @@ model = joblib.load("../models/classifier.pkl")
 
 def index():
    
-    c=df.drop(df.columns[:4],axis=1)
-    count = c.sum().sort_values(ascending =False)
+    i=df.drop(df.columns[:4],axis=1)
+    count = i.sum().sort_values(ascending =False)
     #print(count)
 
     cols = count.head()
@@ -56,7 +56,13 @@ def index():
     df1.loc[df1['values'] < 1000, 'categories'] = 'Other categories'
     pie_chart=px.pie(df1, names='categories', values='values')
     
-    
+    """
+    I took help from https://github.com/deogakofi/disaster_response/blob/master/data/figures.py
+    for follwing lines:
+    1)for genre in genre_counts['genre']:
+    2)  x_values = list(genre_counts[genre_counts['genre'] == genre]['genre'])
+    3)  y_values = list(genre_counts[genre_counts['genre'] == genre]['count'])
+    """
     genre_counts = df.groupby('genre').count()['message'].sort_values(ascending = False)
     print(genre_counts)
     
