@@ -20,7 +20,7 @@
                 -go.html: Renders classifier
                 -master.html: Renders web-page,
                 
-      2. run.py: App Routes
+      2. run(2).py: App Routes
       
 2. data:
        i. DisasterResponse.db: Merged SQLite Database of categories and messages,
