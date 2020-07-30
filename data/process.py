@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 def load_data(messages_filepath, categories_filepath):
     messages = pd.read_csv(messages_filepath)
     categories = pd.read_csv(categories_filepath)
-    #df = pd.concat([messages, categories], axis=1, sort=False)
+    
     df = messages.merge(categories, on = 'id')
     return df
 
@@ -28,10 +28,11 @@ def clean_data(df):
     df = df.drop(['categories'],axis =1 )
     df = pd.concat([df, categories], axis=1)
     #boolean = df.duplicated().any()
+    #print(boolean)
     df=df.drop_duplicates()
-    
-    return df
     #boolean1 = df.duplicated().any()
+    #print(boolean1)
+    return df
     
 def save_data(df, database_filename):
     engine = create_engine('sqlite:///{}.db'.format(database_filename))
