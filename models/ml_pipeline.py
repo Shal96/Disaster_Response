@@ -74,34 +74,21 @@ def build_model():
 
 def display_results(y_test, y_pred):
         results = pd.DataFrame(columns=['category', 'precision', 'recall', 'f_score'])
-        count = 0
+        i = 0
         for category in y_test.columns:
-            precision, recall, f_score, support = score(y_test[category], y_pred[:,count], average='weighted')
-            results.at[count+1, 'category'] =category
-            results.at[count+1, 'precision'] = precision
-            results.at[count+1, 'recall'] = recall
-            results.at[count+1, 'f_score'] = f_score
-            count += 1
+            precision, recall, f_score, support = score(y_test[category], y_pred[:,i], average='weighted')
+            results.at[i+1, 'category'] =category
+            results.at[i+1, 'precision'] = precision
+            results.at[i+1, 'recall'] = recall
+            results.at[i+1, 'f_score'] = f_score
+            i += 1
             
         avg_precision = results['precision'].mean()
         print('Average precision:', avg_precision)
         print('Average recall:', results['recall'].mean())
         print('Average f_score:', results['f_score'].mean())
         return results
-"""
-def gridsearch(model, X_train, y_train):
-    parameters = {'clf__estimator__n_estimators': [50,100, 200],
-                  'clf__estimator__min_samples_split':[2, 3, 4],
-                  'vect__max_df': (0.5, 0.75, 1.0),
-                  'vect__ngram_range': ((1, 1), (1, 2)),
-                  'vect__max_df': (0.5, 0.75, 1.0),
-                  'vect__max_features': (None, 5000, 10000)}
 
-    cv = GridSearchCV(model, param_grid=parameters,verbose = 2, n_jobs = -1)
-    cv.fit(X_train, y_train)
-    print("\nBest Parameters:", cv.best_params_)
-    return cv
- """
     
 def train_evaluate_model(model, X, Y):
     X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2)
@@ -131,27 +118,8 @@ def train_evaluate_model(model, X, Y):
     return X_train, X_test, y_train, y_test, y_pred, model, get_results
     
 
-"""
-    def display_results(y_test, y_pred):
-    results = pd.DataFrame(columns=['category', 'precision', 'recall', 'f_score'])
-    count = 0
-    for category in y_test.columns:
-        precision, recall, f_score, support = score(y_test[category], y_pred[:,count], average='weighted')
-        results.at[count+1, 'category'] =category
-        results.at[count+1, 'precision'] = precision
-        results.at[count+1, 'recall'] = recall
-        results.at[count+1, 'f_score'] = f_score
-        count += 1
-    avg_precision = results['precision'].mean()
-    print('Average precision:', avg_precision)
-    print('Average recall:', results['recall'].mean())
-    print('Average f_score:', results['f_score'].mean())
-    return results
-"""   
 
-    
-
-def save_model(model, model_filepath):
+ def save_model(model, model_filepath):
     #with open('../models/{}.pickle'.format(model_filepath), 'wb') as f:
         #pickle.dump(model, f)
         
