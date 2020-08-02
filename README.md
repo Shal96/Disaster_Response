@@ -20,16 +20,16 @@
                 -go.html: Renders classifier
                 -master.html: Renders web-page,
                 
-      2. run(2).py: App Routes
+      2. run.py: App Routes
       
 2. data:
        i. DisasterResponse.db: Merged SQLite Database of categories and messages,
        ii. disaster_messages.csv: Disaster Messages CSV file,
        iii. disaster_categories.csv: Disaster Categories CSV file,
-       iv. process.py: Cleans data and processess ETL pipeline,
+       iv. process_data.py: Cleans data and processess ETL pipeline,
       
 3. models:
          i. classifier.zip: Pickel file of the trained classifier,
          ii. train_classifier.py: Script to train Random Forest classifier. 
 ### Note:
-        - you might have to: pip install plotly_express==0.4.0
+        - you might have to: pip install plotly_express==0.4.0 for pie chart vizualization
