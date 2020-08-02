@@ -86,7 +86,7 @@ def tokenize(text):
 
 def build_model():
     """
-    Build the Pipeline using Random Forest Classifier and Get parameters for gridsearchcv
+    Build the Pipeline using Random Forest Classifier 
     Arguments: None
     Returns: Pipeline
      
